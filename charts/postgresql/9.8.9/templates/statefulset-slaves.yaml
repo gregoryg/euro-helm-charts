@@ -5,7 +5,6 @@ kind: StatefulSet
 metadata:
   name: "{{ template "postgresql.fullname" . }}-slave"
   labels:
-  {{- include "common.labels.standard" . | nindent 4 }}
 {{- with .Values.slave.labels }}
 {{ toYaml . | indent 4 }}
 {{- end }}

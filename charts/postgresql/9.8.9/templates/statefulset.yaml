@@ -3,7 +3,6 @@ kind: StatefulSet
 metadata:
   name: {{ template "postgresql.master.fullname" . }}
   labels:
-  {{- include "common.labels.standard" . | nindent 4 }}
   {{- with .Values.master.labels }}
   {{- toYaml . | nindent 4 }}
   {{- end }}
