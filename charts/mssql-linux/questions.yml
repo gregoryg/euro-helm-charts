@@ -1,21 +1,9 @@
+labels:
+  io.cattle.role: project # options are cluster/project
 categories:
 - Database
+- MySQL
 questions:
-- variable: acceptEula.value
-  default: "n"
-  description: "EULA that needs to be accepted."
-  type: string
-  label: Accept Eula
-- variable: edition.value
-  default: "Express"
-  description: "	The edition of SQL Server to install. See section Editions."
-  type: string
-  label: SQL Edition
-- variable: sapassword
-  default: "password"
-  description: "MS SQL SA Password"
-  type: password
-  label: MSSql SA Password
 - variable: defaultImage
   default: true
   description: "Use default Docker images"
@@ -24,26 +12,88 @@ questions:
   show_subquestion_if: false
   group: "Container Images"
   subquestions:
-  - variable: image.repository
-    default: "microsoft/mssql-server-linux"
-    description: "Microsoft SQL 2017 image name"
+  - variable: image
+    default: "ranchercharts/mysql"
+    description: "MySQL image name"
     type: string
-    label: Microsoft SQL 2017 Image Name
-  - variable: image.tag
-    default: "2017-CU5"
-    description: "Microsoft SQL 2017 image tag"
+    label: Image Name
+  - variable: imageTag
+    default: "5.7.14"
+    description: "MySQL image tag"
     type: string
     label: Image Tag
+  - variable: busybox.image
+    default: "ranchercharts/busybox"
+    description: "Busybox image name"
+    type: string
+    label: Image Image Name
+  - variable: busybox.tag
+    default: "1.29.3"
+    description: "Busybox image tag"
+    type: string
+    label: Busybox Image Tag
+- variable: mysqlDatabase
+  default: "admin"
+  description: "Name of database to create"
+  type: string
+  required: true
+  label: MySQL Database
+  group: "MySQL Settings"
+- variable: mysqlUser
+  default: "admin"
+  description: "Username of user to create"
+  type: string
+  required: true
+  label: MySQL Username
+  group: "MySQL Settings"
+- variable: mysqlPassword
+  default: ""
+  description: "MySQL Password for the new user, defaults to a random 10-character alphanumeric string if not set"
+  type: password
+  label: MySQL Password
+  group: "MySQL Settings"
+- variable: persistence.enabled
+  default: "false"
+  description: "Enable persistence using PVC"
+  type: boolean
+  required: true
+  label: Persistent Volume Enabled
+  show_subquestion_if: true
+  group: "Persistent Volume"
+  subquestions:
+  - variable: persistence.size
+    default: "8Gi"
+    description: "Volume Size"
+    type: string
+    label: Volume Size
+    required: true
+  - variable: persistence.storageClass
+    default: ""
+    description: "If undefined or null, uses the default StorageClass. Defaults to null."
+    type: storageclass
+    label: Default storageClass
+  - variable: persistence.existingClaim
+    default: ""
+    description: "If not empty, uses the specified existing PVC instead of creating new one"
+    type: pvc
+    label: Existing Persistent Volume Claim for mysql
+- variable: service.port
+  default: "3306"
+  description: "Service port for access to MySQL"
+  type: string
+  label: MySQL NodePort number
+  required: true
+  group: "MySQL Settings"
 - variable: service.type
   default: "ClusterIP"
-  description: "MS SQL Kubernetes Service type"   
+  description: "MySQL K8s Service type"
   type: enum
-  group: "Service Settings"
+  group: "Services and Load Balancing"
   options:
-  - "ClusterIP"
-  - "NodePort"
+    - "ClusterIP"
+    - "NodePort"
   required: true
-  label: MsSQLDB Service Type
+  label: MySQL Service Type
   show_subquestion_if: "NodePort"
   subquestions:
   - variable: service.nodePort
@@ -53,60 +103,16 @@ questions:
     min: 30000
     max: 32767
     label: Service NodePort number
-- variable: persistence.enabled
-  default: "false"
-  description: "Enable persistent volume for MS-SQL"
+- variable: metrics.enabled
+  default: false
+  description: "Enable mysql prometheus metrics exporter"
+  label: Enable MySQL Metrics
   type: boolean
-  required: true
-  label: MSSQL Persistent Volume Enabled
   show_subquestion_if: true
-  group: "Persistent Volume"
+  group: "Metrics"
   subquestions:
-  - variable: persistence.dataAccessMode
-    default: "ReadWriteOnce"
-    description: "Data Access Mode to be used for the Data Directory"
-    type: string
-    label: Data Access Mode
-    required: true
-- variable: persistence.dataSize
-    default: "1Gi"
-    description: "PVC Size for Data Directory"
-    type: string
-    label: Data Directory Volume Size
-    required: true
-- variable: persistence.logAccessMode
-    default: "ReadWriteOnce"
-    description: "Data Access Mode to be used for the Log Directory"
-    type: string
-    label: Log Directory Access Mode
-    required: true
-- variable: persistence.logSize
-    default: "1Gi"
-    description: "PVC Size for Log Directory"
-    type: string
-    label: Log Directory Volume Size
-    required: true
-- variable: persistence.backupAccessMode
-    default: "ReadWriteOnce"
-    description: "Data Access Mode to be used for the Backup Directory"
-    type: string
-    label: Backup Directory Access Mode
-    required: true
-- variable: persistence.backupSize
-    default: "1Gi"
-    description: "PVC Size for Backup Directory"
-    type: string
-    label: Backup Directory Volume Size
-    required: true
-- variable: persistence.masterAccessMode
-    default: "ReadWriteOnce"
-    description: "Data Access Mode to be used for the Master Database"
-    type: string
-    label: Backup Directory Master Database
-    required: true
-- variable: persistence.masterSize
-    default: "1Gi"
-    description: "PVC Size for Master Database"
-    type: string
-    label: Master Database Volume Size
-    required: true
+  - variable: metrics.serviceMonitor.enabled
+    default: false
+    description: "Set this to `true` to create ServiceMonitor for Prometheus operator"
+    type: boolean
+    label: Create MySQL ServiceMonitor for Prometheus Operator

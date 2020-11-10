@@ -1,0 +1,112 @@
+categories:
+- Database
+questions:
+- variable: acceptEula.value
+  default: "n"
+  description: "EULA that needs to be accepted."
+  type: string
+  label: Accept Eula
+- variable: edition.value
+  default: "Express"
+  description: "	The edition of SQL Server to install. See section Editions."
+  type: string
+  label: SQL Edition
+- variable: sapassword
+  default: "password"
+  description: "MS SQL SA Password"
+  type: password
+  label: MSSql SA Password
+- variable: defaultImage
+  default: true
+  description: "Use default Docker images"
+  label: Use Default Images
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: image.repository
+    default: "microsoft/mssql-server-linux"
+    description: "Microsoft SQL 2017 image name"
+    type: string
+    label: Microsoft SQL 2017 Image Name
+  - variable: image.tag
+    default: "2017-CU5"
+    description: "Microsoft SQL 2017 image tag"
+    type: string
+    label: Image Tag
+- variable: service.type
+  default: "ClusterIP"
+  description: "MS SQL Kubernetes Service type"   
+  type: enum
+  group: "Service Settings"
+  options:
+  - "ClusterIP"
+  - "NodePort"
+  required: true
+  label: MsSQLDB Service Type
+  show_subquestion_if: "NodePort"
+  subquestions:
+  - variable: service.nodePort
+    default: ""
+    description: "NodePort port number(to set explicitly, choose port between 30000-32767)"
+    type: int
+    min: 30000
+    max: 32767
+    label: Service NodePort number
+- variable: persistence.enabled
+  default: "false"
+  description: "Enable persistent volume for MS-SQL"
+  type: boolean
+  required: true
+  label: MSSQL Persistent Volume Enabled
+  show_subquestion_if: true
+  group: "Persistent Volume"
+  subquestions:
+  - variable: persistence.dataAccessMode
+    default: "ReadWriteOnce"
+    description: "Data Access Mode to be used for the Data Directory"
+    type: string
+    label: Data Access Mode
+    required: true
+- variable: persistence.dataSize
+    default: "1Gi"
+    description: "PVC Size for Data Directory"
+    type: string
+    label: Data Directory Volume Size
+    required: true
+- variable: persistence.logAccessMode
+    default: "ReadWriteOnce"
+    description: "Data Access Mode to be used for the Log Directory"
+    type: string
+    label: Log Directory Access Mode
+    required: true
+- variable: persistence.logSize
+    default: "1Gi"
+    description: "PVC Size for Log Directory"
+    type: string
+    label: Log Directory Volume Size
+    required: true
+- variable: persistence.backupAccessMode
+    default: "ReadWriteOnce"
+    description: "Data Access Mode to be used for the Backup Directory"
+    type: string
+    label: Backup Directory Access Mode
+    required: true
+- variable: persistence.backupSize
+    default: "1Gi"
+    description: "PVC Size for Backup Directory"
+    type: string
+    label: Backup Directory Volume Size
+    required: true
+- variable: persistence.masterAccessMode
+    default: "ReadWriteOnce"
+    description: "Data Access Mode to be used for the Master Database"
+    type: string
+    label: Backup Directory Master Database
+    required: true
+- variable: persistence.masterSize
+    default: "1Gi"
+    description: "PVC Size for Master Database"
+    type: string
+    label: Master Database Volume Size
+    required: true
