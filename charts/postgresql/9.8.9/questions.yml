@@ -1,0 +1,145 @@
+categories:
+- Database
+- Postgresql
+questions:
+
+# Image Details
+
+- variable: defaultImage
+  default: true
+  description: "Use default Docker images"
+  label: Use Default Images
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: image.repository
+    default: "bitnami/postgresql"
+    description: "Postgresql image name"
+    type: string
+    label: Image Name
+  - variable: image.tag
+    default: "11.9.0-debian-10-r48"
+    description: "Postgresql image tag"
+    type: string
+    label: Image Tag
+
+# Authentication
+
+- variable: mysqlUser
+  default: "postgres"
+  description: "Username of user to create"
+  type: string
+  required: true
+  label: Postgresql Username
+  group: "Postgresql Settings"
+- variable: postgresqlPassword
+  default: "password"
+  description: "Postgresql Password for the new user, defaults to a random 10-character alphanumeric string if not set"
+  type: password
+  label: Postgresql Password
+  group: "Postgresql Settings"
+
+# ldap configuration
+
+- variable: ldap.enabled
+  default: "false"
+  description: "Enable LDAP Authentication"
+  type: boolean
+  required: true
+  label: Enable LDAP Authentication
+  show_subquestion_if: true
+  group: "LDAP Authentication"
+  subquestions:
+  - variable: ldap.url
+    description: "LDAP URL"
+    type: string
+    label: ldap url
+    group: "LDAP Authentication"
+  - variable: ldap.server
+    description: "LDAP Server IP Address or Hostnmae"
+    type: string
+    label: LDAP Server
+    group: "LDAP Authentication"
+    - variable: ldap.port
+    description: "LDAP port"
+    default: "389"
+    type: string
+    label: ldap port
+    group: "LDAP Authentication"
+    - variable: ldap.port
+    description: "LDAP port"
+    default: "389"
+    type: string
+    label: ldap port
+    group: "LDAP Authentication"
+    - variable: ldap.baseDN
+    description: "LDAP BaseDN"
+    type: string
+    label: ldap baseDN
+    group: "LDAP Authentication"
+    - variable: ldap.tls
+    default: "false"
+    description: "Enable TLS for LDAP"
+    type: boolean
+    label: Enable TLS for LDAP
+    group: "LDAP Authentication"
+
+
+# Persistant Storage
+
+- variable: persistence.enabled
+  default: "false"
+  description: "Enable persistence using PVC"
+  type: boolean
+  required: true
+  label: Persistent Volume Enabled
+  show_subquestion_if: true
+  group: "Persistent Volume"
+  subquestions:
+  - variable: persistence.size
+    default: "8Gi"
+    description: "Volume Size"
+    type: string
+    label: Volume Size
+    required: true
+  - variable: persistence.storageClass
+    default: ""
+    description: "If undefined or null, uses the default StorageClass. Defaults to null."
+    type: storageclass
+    label: Default storageClass
+  - variable: persistence.existingClaim
+    default: ""
+    description: "If not empty, uses the specified existing PVC instead of creating new one"
+    type: pvc
+    label: Existing Persistent Volume Claim for Postgresql
+
+# Service Tyope
+
+- variable: service.port
+  default: "5432"
+  description: "Service port for access to Postgresql"
+  type: string
+  label: Postgresql NodePort number
+  required: true
+  group: "Postgresql Settings"
+- variable: service.type
+  default: "ClusterIP"
+  description: "Postgresql K8s Service type"
+  type: enum
+  group: "Services and Load Balancing"
+  options:
+    - "ClusterIP"
+    - "NodePort"
+  required: true
+  label: MySQL Service Type
+  show_subquestion_if: "NodePort"
+  subquestions:
+  - variable: service.nodePort
+    default: ""
+    description: "NodePort port number(to set explicitly, choose port between 30000-32767)"
+    type: int
+    min: 30000
+    max: 32767
+    label: Service NodePort number
+

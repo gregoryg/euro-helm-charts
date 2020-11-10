@@ -66,12 +66,12 @@ core:
   envFrom: []
 
   resources: {}
-  # limits:
-  #   cpu: "100m"
-  #   memory: 512Mi
-  # requests:
-  #   cpu: "100m"
-  #   memory: 512Mi
+   limits:
+     cpu: "100m"
+     memory: 512Mi
+   requests:
+     cpu: "100m"
+     memory: 512Mi
 
   standalone: false
   numberOfServers: 3
@@ -173,12 +173,12 @@ readReplica:
   envFrom: []
 
   resources: {}
-  # limits:
-  #   cpu: "100m"
-  #   memory: 512Mi
-  # requests:
-  #   cpu: "100m"
-  #   memory: 512Mi
+   limits:
+     cpu: "100m"
+     memory: 512Mi
+   requests:
+     cpu: "100m"
+     memory: 512Mi
 
   autoscaling:
     enabled: false

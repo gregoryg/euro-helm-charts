@@ -143,7 +143,7 @@ postgresqlUsername: postgres
 ## PostgreSQL password
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#setting-the-root-password-on-first-run
 ##
-# postgresqlPassword:
+postgresqlPassword: ""
 
 ## PostgreSQL password using existing secret
 ## existingSecret: secret
@@ -346,7 +346,7 @@ service:
   ## Specify the nodePort value for the LoadBalancer and NodePort service types.
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
   ##
-  # nodePort:
+  nodePort:
 
   ## Provide any additional annotations which may be required. Evaluated as a template.
   ##
@@ -392,7 +392,7 @@ persistence:
   ## If defined, PVC must be created manually before volume will be bound
   ## The value is evaluated as a template, so, for example, the name can depend on .Release or .Chart
   ##
-  # existingClaim:
+  existingClaim:
 
   ## The path the volume will be mounted at, useful when using different
   ## PostgreSQL images.
@@ -404,7 +404,7 @@ persistence:
   ##
   subPath: ''
 
-  # storageClass: "-"
+  storageClass: ""
   accessModes:
     - ReadWriteOnce
   size: 8Gi

@@ -1,6 +1,7 @@
 categories:
 - Database
 questions:
+# Image Details
 - variable: defaultImage
   default: true
   description: "Use default Docker images"
@@ -19,6 +20,18 @@ questions:
     description: "Neo4j image tag"
     type: string
     label: Image Tag
+
+# Persistance Enabled
+
+- variable: core.standalone
+  default: "false"
+  description: "Enable Standalone Core Server"
+  type: boolean
+  label: MSSQL Persistent Volume Enable
+
+
+# Metrics
+
 - variable: metrics.enabled
   default: true
   description: "Start a side-car prometheus exporter"
