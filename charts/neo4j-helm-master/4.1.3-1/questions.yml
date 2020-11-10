@@ -2,23 +2,23 @@ categories:
 - Database
 questions:
 - variable: defaultImage
-default: true
-description: "Use default Docker images"
-label: Use Default Images
-type: boolean
-show_subquestion_if: false
-group: "Container Images"
-subquestions:
-- variable: image.repository
-  default: "rneo4j"
-  description: "Neo4j image name"
-  type: string
-  label: Neo4j Image Name
-- variable: imageTag
-  default: "4.1.3-enterprise"
-  description: "Neo4j image tag"
-  type: string
-  label: Image Tag
+  default: true
+  description: "Use default Docker images"
+  label: Use Default Images
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: image.repository
+    default: "rneo4j"
+    description: "Neo4j image name"
+    type: string
+    label: Neo4j Image Name
+  - variable: imageTag
+    default: "4.1.3-enterprise"
+    description: "Neo4j image tag"
+    type: string
+    label: Image Tag
 - variable: metrics.enabled
   default: true
   description: "Start a side-car prometheus exporter"
