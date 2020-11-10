@@ -61,24 +61,24 @@ questions:
     type: string
     label: LDAP Server
     group: "LDAP Authentication"
-    - variable: ldap.port
+  - variable: ldap.port
     description: "LDAP port"
     default: "389"
     type: string
     label: ldap port
     group: "LDAP Authentication"
-    - variable: ldap.port
+  - variable: ldap.port
     description: "LDAP port"
     default: "389"
     type: string
     label: ldap port
     group: "LDAP Authentication"
-    - variable: ldap.baseDN
+  - variable: ldap.baseDN
     description: "LDAP BaseDN"
     type: string
     label: ldap baseDN
     group: "LDAP Authentication"
-    - variable: ldap.tls
+  - variable: ldap.tls
     default: "false"
     description: "Enable TLS for LDAP"
     type: boolean
