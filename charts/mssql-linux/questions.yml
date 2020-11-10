@@ -2,46 +2,46 @@ categories:
 - Database
 questions:
 - variable: acceptEula.value
-    default: "n"
-    description: "EULA that needs to be accepted."
-    type: string
-    label: Accept Eula
+  default: "n"
+  description: "EULA that needs to be accepted."
+  type: string
+  label: Accept Eula
 - variable: edition.value
-    default: "Express"
-    description: "	The edition of SQL Server to install. See section Editions."
-    type: string
-    label: SQL Edition
+  default: "Express"
+  description: "	The edition of SQL Server to install. See section Editions."
+  type: string
+  label: SQL Edition
 - variable: sapassword
-    default: "password"
-    description: "MS SQL SA Password"
-    type: password
-    label: MSSql SA Password
+  default: "password"
+  description: "MS SQL SA Password"
+  type: password
+  label: MSSql SA Password
 - variable: defaultImage
-default: true
-description: "Use default Docker images"
-label: Use Default Images
-type: boolean
-show_subquestion_if: false
-group: "Container Images"
-subquestions:
-- variable: image.repository
+  default: true
+  description: "Use default Docker images"
+  label: Use Default Images
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: image.repository
     default: "microsoft/mssql-server-linux"
     description: "Microsoft SQL 2017 image name"
     type: string
     label: Microsoft SQL 2017 Image Name
-- variable: image.tag
+  - variable: image.tag
     default: "2017-CU5"
     description: "Microsoft SQL 2017 image tag"
     type: string
     label: Image Tag
 - variable: service.type
   default: "ClusterIP"
-  description: "MS SQL Kubernetes Service type"
+  description: "MS SQL Kubernetes Service type"   
   type: enum
   group: "Service Settings"
   options:
-    - "ClusterIP"
-    - "NodePort"
+  - "ClusterIP"
+  - "NodePort"
   required: true
   label: MsSQLDB Service Type
   show_subquestion_if: "NodePort"
