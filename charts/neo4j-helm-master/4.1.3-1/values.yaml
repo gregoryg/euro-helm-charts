@@ -65,13 +65,13 @@ core:
   # configMap: "my-custom-configmap"
   envFrom: []
 
-  resources: {}
-   limits:
-     cpu: "100m"
-     memory: 512Mi
-   requests:
-     cpu: "100m"
-     memory: 512Mi
+#  resources: {}
+#   limits:
+#     cpu: "100m"
+#     memory: 512Mi
+#   requests:
+#     cpu: "100m"
+#     memory: 512Mi
 
   standalone: false
   numberOfServers: 3
