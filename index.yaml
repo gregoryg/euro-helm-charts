@@ -195,6 +195,32 @@ entries:
     urls:
     - https://github.com/mbookham7/euro-helm-charts/releases/download/neo4j-4.1.3-1/neo4j-4.1.3-1.tgz
     version: 4.1.3-1
+  - apiVersion: v1
+    appVersion: 4.1.3
+    created: "2020-11-12T22:20:48.240447Z"
+    description: Neo4j is the world's leading graph database
+    digest: aa107066922d0495387e49cf92d87935d5aed8573a5aba9ea63f87e393b4aac7
+    home: https://www.neo4j.com
+    icon: http://info.neo4j.com/rs/773-GON-065/images/neo4j_logo.png
+    keywords:
+    - graph
+    - database
+    - cypher
+    maintainers:
+    - email: david.allen@neo4j.com
+      name: moxious
+    - email: bledi.feshti@neo4j.com
+      name: bfeshti
+    - email: mark.needham@neo4j.com
+      name: mneedham
+    name: neo4j
+    sources:
+    - https://github.com/neo4j/neo4j
+    - https://github.com/neo4j/docker-neo4j
+    - https://github.com/neo4j-contrib/neo4j-helm
+    urls:
+    - https://github.com/mbookham7/euro-helm-charts/releases/download/neo4j-4.1.3-1/neo4j-4.1.3-1.tgz
+    version: 4.1.3-1
   postgresql:
   - annotations:
       category: Database
