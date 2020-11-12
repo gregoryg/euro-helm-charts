@@ -64,3 +64,49 @@ questions:
     type: boolean
     label: Create ServiceMonitor Resource for Scraping Metrics Using PrometheusOperator
     required: true
+
+# Resource Limits and Requests
+
+- variable: resources.limits.cpu
+  default: "100m"
+  type: enum
+  group: "Resource Limits"
+  options:
+  - "100m"
+  - "200m"
+  - "500m"
+  description: "CPU Resource Limits"
+  label: CPU Resource Limits
+
+- variable: resources.limits.memory
+  default: "2Gi"
+  type: enum
+  group: "Resource Limits"
+  options:
+  - "2Gi"
+  - "4Gi"
+  - "8Gi"
+  description: "Memory Resource Limits"
+  label: Memory Resource Limits
+
+  - variable: resources.requests.cpu
+  default: "100m"
+  type: enum
+  group: "Resource Requests"
+  options:
+  - "100m"
+  - "200m"
+  - "500m"
+  description: "CPU Resource Requests"
+  label: CPU Resource Limits
+
+- variable: resources.requests.memory
+  default: "2Gi"
+  type: enum
+  group: "Resource Requests"
+  options:
+  - "2Gi"
+  - "4Gi"
+  - "8Gi"
+  description: "Memory Resource Requests"
+  label: Memory Resource Requests

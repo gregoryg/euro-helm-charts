@@ -115,9 +115,12 @@ securityContext:
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
 resources:
-  requests:
-    memory: 256Mi
+  limits:
     cpu: 100m
+    memory: 2Gi
+  requests:
+    cpu: 100m
+    memory: 256mi
 
 # Custom mysql configuration files path
 configurationFilesPath: /etc/mysql/conf.d/
