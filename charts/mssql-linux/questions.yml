@@ -168,7 +168,7 @@ questions:
   description: "Memory Resource Limits"
   label: Memory Resource Limits
 
-  - variable: resources.requests.cpu
+- variable: resources.requests.cpu
   default: "100m"
   type: enum
   group: "Resource Requests"
