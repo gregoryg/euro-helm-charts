@@ -27,7 +27,24 @@ questions:
   default: "false"
   description: "Enable Standalone Core Server"
   type: boolean
-  label: MSSQL Persistent Volume Enable
+  label: Enable Standalone Core Server
+
+- persistentVolume.size
+  default: "10Gi"
+  description: "Core Server Data Persistent Volume size"
+  type: enum
+  group: "Persistent Volume"
+  options:
+  - "1Gi"
+  - "5Gi"
+  - "10Gi"
+  label: Core Server Data Persistent Volume
+
+- persistentVolume.storageClass
+  default: ""
+  description: "If undefined or null, uses the default StorageClass. Defaults to null."
+  type: storageclass
+  label: Default storageClass
 
 
 # Metrics

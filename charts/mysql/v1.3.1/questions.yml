@@ -4,6 +4,9 @@ categories:
 - Database
 - MySQL
 questions:
+
+# Contianer Image Details
+
 - variable: defaultImage
   default: true
   description: "Use default Docker images"
@@ -32,6 +35,9 @@ questions:
     description: "Busybox image tag"
     type: string
     label: Busybox Image Tag
+
+# Authentication details
+
 - variable: mysqlDatabase
   default: "admin"
   description: "Name of database to create"
@@ -52,6 +58,9 @@ questions:
   type: password
   label: MySQL Password
   group: "MySQL Settings"
+
+# Persistant Storage
+
 - variable: persistence.enabled
   default: "false"
   description: "Enable persistence using PVC"
@@ -62,9 +71,14 @@ questions:
   group: "Persistent Volume"
   subquestions:
   - variable: persistence.size
-    default: "8Gi"
+    type: enum
+    group: "Persistent Volume"
+    options:
+    - "10Gi"
+    - "20Gi"
+    - "50Gi"
+    default: "10Gi"
     description: "Volume Size"
-    type: string
     label: Volume Size
     required: true
   - variable: persistence.storageClass
@@ -77,6 +91,9 @@ questions:
     description: "If not empty, uses the specified existing PVC instead of creating new one"
     type: pvc
     label: Existing Persistent Volume Claim for mysql
+
+# Service Configuration
+
 - variable: service.port
   default: "3306"
   description: "Service port for access to MySQL"
@@ -103,6 +120,9 @@ questions:
     min: 30000
     max: 32767
     label: Service NodePort number
+
+# Metrics Server
+
 - variable: metrics.enabled
   default: false
   description: "Enable mysql prometheus metrics exporter"

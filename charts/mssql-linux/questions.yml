@@ -82,9 +82,14 @@ questions:
     label: Data Access Mode
     required: true
   - variable: persistence.dataSize
+    type: enum
+    group: "Persistent Volume"
+    options:
+    - "1Gi"
+    - "5Gi"
+    - "10Gi"
     default: "1Gi"
     description: "PVC Size for Data Directory"
-    type: string
     label: Data Directory Volume Size
     required: true
   - variable: persistence.logAccessMode
@@ -95,8 +100,13 @@ questions:
     required: true
   - variable: persistence.logSize
     default: "1Gi"
+    type: enum
+    group: "Persistent Volume"
+    options:
+    - "1Gi"
+    - "5Gi"
+    - "10Gi"
     description: "PVC Size for Log Directory"
-    type: string
     label: Log Directory Volume Size
     required: true
   - variable: persistence.backupAccessMode
@@ -107,8 +117,13 @@ questions:
     required: true
   - variable: persistence.backupSize
     default: "1Gi"
+    type: enum
+    group: "Persistent Volume"
+    options:
+    - "1Gi"
+    - "5Gi"
+    - "10Gi"
     description: "PVC Size for Backup Directory"
-    type: string
     label: Backup Directory Volume Size
     required: true
   - variable: persistence.masterAccessMode
@@ -119,6 +134,12 @@ questions:
     required: true
   - variable: persistence.masterSize
     default: "1Gi"
+    type: enum
+    group: "Persistent Volume"
+    options:
+    - "1Gi"
+    - "5Gi"
+    - "10Gi"
     description: "PVC Size for Master Database"
     type: string
     label: Master Database Volume Size

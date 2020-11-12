@@ -98,8 +98,14 @@ questions:
   group: "Persistent Volume"
   subquestions:
   - variable: persistence.size
-    default: "8Gi"
+    default: "10Gi"
     description: "Volume Size"
+    type: enum
+    group: "Persistent Volume"
+    options:
+    - "1Gi"
+    - "5Gi"
+    - "10Gi"
     type: string
     label: Volume Size
     required: true

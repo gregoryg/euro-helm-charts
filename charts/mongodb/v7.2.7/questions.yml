@@ -1,6 +1,9 @@
 categories:
 - Database
 questions:
+
+# Image Details
+
 - variable: defaultRegistry
   default: true
   description: "Use Docker hub for images"
@@ -54,6 +57,9 @@ questions:
     type: string
     label: Image Metrics Tag
     show_if: "defaultImage=false&&metrics.enabled=true"
+  
+# Authentication Details
+
 - variable: usePassword
   default: true
   description: "Enable Password Authentication"
@@ -80,6 +86,9 @@ questions:
     type: string
     label: MongoDB Database
     required: true
+
+# Replica Set Info
+
 - variable: replicaSet.enabled
   default: true
   description: "Switch to standalone or replicaSet mongodb instance"
@@ -100,6 +109,9 @@ questions:
     description: "Key used for replica set authentication, will be auto-generated if not set"
     type: string
     label: ReplicaSet Auth Key
+
+# Persistant Storage Config
+
 - variable: persistence.enabled
   default: "false"
   description: "Enable persistent volume for MongoDB"
@@ -110,9 +122,13 @@ questions:
   group: "Persistent Volume"
   subquestions:
   - variable: persistence.size
-    default: "8Gi"
+    type: enum
+    group: "Persistent Volume"
+    options:
+    - "10Gi"
+    - "20Gi"
+    - "50Gi"
     description: "MongoDB Persistent Volume Size"
-    type: string
     label: MongoDB Volume Size
     required: true
   - variable: persistence.storageClass
@@ -126,6 +142,9 @@ questions:
     type: pvc
     label: Uses Existing Persistent Volume Claim for LocalStorage
     show_if: "persistence.enabled=true&&replicaSet.enabled=false"
+
+# Service Configuration
+
 - variable: service.type
   default: "ClusterIP"
   description: "MongoDB Kubernetes Service type"
