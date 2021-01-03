@@ -120,7 +120,7 @@ resources:
     memory: 2Gi
   requests:
     cpu: 100m
-    memory: 256mi
+    memory: 256Mi
 
 # Custom mysql configuration files path
 configurationFilesPath: /etc/mysql/conf.d/
