@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: net-utils
+  name: net-utils
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: net-utils
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: net-utils
+    spec:
+      containers:
+      - image: gregoryg/sh-net-utils
+        args:
+        - sleep
+        - 24d
+        name: net-utils
+        resources: {}
